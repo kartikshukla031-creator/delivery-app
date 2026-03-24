@@ -20,16 +20,11 @@ mongoose.connect(process.env.MONGO_URL)
 app.use("/orders", orderRoutes);
 app.use("/auth", authRoutes);
 
-app.get("/login", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "login.html"));
-});
-
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "login.html"));
 });
 
 const PORT = process.env.PORT || 5000;
-
 app.listen(PORT, () => {
   console.log("Server running 🚀");
 });
