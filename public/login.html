@@ -1,46 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login - AI Delivery</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Delivery Login</title>
 
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #1f1c2c, #928dab);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
       height: 100vh;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .container {
-      background: rgba(255,255,255,0.1);
-      padding: 30px;
-      border-radius: 20px;
+    .card {
+      background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(15px);
-      width: 90%;
-      max-width: 350px;
+      padding: 40px;
+      border-radius: 20px;
+      width: 320px;
       text-align: center;
-      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      color: white;
     }
 
-    h1 {
+    .card h2 {
       margin-bottom: 10px;
-      font-size: 26px;
     }
 
-    p {
-      font-size: 13px;
+    .card p {
+      font-size: 14px;
+      margin-bottom: 25px;
       opacity: 0.8;
-      margin-bottom: 20px;
     }
 
     input {
-      width: 90%;
+      width: 100%;
       padding: 12px;
       margin: 10px 0;
       border-radius: 10px;
@@ -48,92 +49,74 @@
       outline: none;
     }
 
+    input:focus {
+      box-shadow: 0 0 5px #00c6ff;
+    }
+
     button {
-      width: 95%;
+      width: 100%;
       padding: 12px;
-      margin-top: 10px;
+      margin-top: 15px;
       border: none;
-      border-radius: 12px;
-      background: linear-gradient(45deg, #ff7a18, #ff3c00);
+      border-radius: 10px;
+      background: linear-gradient(135deg, #ff512f, #dd2476);
       color: white;
-      font-weight: bold;
+      font-size: 15px;
       cursor: pointer;
       transition: 0.3s;
     }
 
     button:hover {
       transform: scale(1.05);
+      opacity: 0.9;
     }
 
     .footer {
-      margin-top: 20px;
+      margin-top: 15px;
       font-size: 12px;
       opacity: 0.7;
     }
 
-    @media(max-width: 500px) {
-      body {
-        padding: 10px;
-      }
-
-      .container {
-        padding: 20px;
-      }
+    .footer span {
+      color: #00c6ff;
     }
   </style>
 </head>
 
 <body>
 
-<div class="container">
-  <h1>🚚 AI Delivery</h1>
-  <p>Smart route optimization with map & AI system</p>
+<div class="card">
+  <h2>🚀 AI Delivery</h2>
+  <p>Login to access optimizer</p>
 
-  <input id="username" placeholder="Username">
+  <input id="email" placeholder="Email">
   <input id="password" type="password" placeholder="Password">
 
   <button onclick="login()">Login</button>
-  <button onclick="register()">Register</button>
 
   <div class="footer">
-    🚀 Project Features:<br>
-    • Map-based delivery system<br>
-    • Route optimization algorithm<br>
-    • AI-based explanation (smart logic)<br>
-    • Mobile responsive UI
+    Built with <span>Node + AI</span>
   </div>
 </div>
 
 <script>
-async function register() {
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-
-  await fetch("/auth/register", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({ username, password })
-  });
-
-  alert("Registered ✅");
-}
-
 async function login() {
-  const username = document.getElementById("username").value;
+  const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
   const res = await fetch("/auth/login", {
     method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({ username, password })
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
   });
 
-  const text = await res.text();
+  const data = await res.json();
 
-  if (text === "success") {
-    window.location.href = "/";
+  if (data.success) {
+    alert("Login Success ✅");
+    window.location.href = "/home";
   } else {
-    alert("Wrong credentials ❌");
+    alert("Invalid credentials ❌");
   }
 }
 </script>
