@@ -11,10 +11,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://k38503307_db_user:12345@ac-9y0h4go-shard-00-00.nrkuns7.mongodb.net:27017,ac-9y0h4go-shard-00-01.nrkuns7.mongodb.net:27017,ac-9y0h4go-shard-00-02.nrkuns7.mongodb.net:27017/mydb?ssl=true&replicaSet=atlas-exo21b-shard-0&authSource=admin")
-.then(() => console.log("DB connected"))
-.catch(err => console.log(err));
-
+mongoose.connect(process.env.MONGO_URL)
+  .then(() => console.log("DB connected"))
+  .catch(err => console.log(err));
+  
 app.use("/orders", orderRoutes);
 app.use("/auth", authRoutes);
 
