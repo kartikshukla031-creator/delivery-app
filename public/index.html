@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Delivery App 🚚</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+</head>
+
+<body>
+
+<h1>🚀 AI Delivery Optimizer</h1>
+
+<input id="location" placeholder="Location">
+<input id="lat" placeholder="Latitude">
+<input id="lng" placeholder="Longitude">
+
+<button onclick="addOrder()">Add</button>
+<button onclick="getOrders()">Show</button>
+<button onclick="optimizeRoute()">AI Optimize</button>
+
+<div id="map"></div>
+
+<ul id="list"></ul>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
