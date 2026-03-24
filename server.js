@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 
 mongoose.connect(process.env.MONGO_URL)
   .then(() => console.log("DB connected"))
@@ -20,12 +20,16 @@ mongoose.connect(process.env.MONGO_URL)
 app.use("/orders", orderRoutes);
 app.use("/auth", authRoutes);
 
-app.get("/", (req, res) => {
+app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "login.html"));
 });
 
-app.get("/home", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "login.html"));
 });
 
-app.listen(5000, () => console.log("Server running 🚀"));
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log("Server running 🚀");
+});
