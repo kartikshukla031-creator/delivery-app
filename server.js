@@ -14,8 +14,11 @@ app.use(express.static("public"));
 mongoose.connect(process.env.MONGO_URL)
   .then(() => console.log("DB connected"))
   .catch(err => console.log(err));
-  
 app.use("/orders", orderRoutes);
 app.use("/auth", authRoutes);
 
-app.listen(5000, () => console.log("Server running 🚀"));
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log("Server running 🚀");
+});
