@@ -3,30 +3,19 @@ const router = express.Router();
 
 const User = require("./User");
 
-// register
 router.post("/register", async (req, res) => {
-  const { username, password } = req.body;
-
-  const user = new User({ username, password });
+  const user = new User(req.body);
   await user.save();
-
   res.send("success");
 });
 
-// login
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
-  const user = await User.findOne({
-    username: username,
-    password: password
-  });
+  const user = await User.findOne({ username, password });
 
-  if (user) {
-    res.send("success");
-  } else {
-    res.send("fail");
-  }
+  if (user) res.send("success");
+  else res.send("fail");
 });
 
 module.exports = router;

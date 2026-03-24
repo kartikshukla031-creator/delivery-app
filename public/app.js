@@ -1,13 +1,9 @@
-let map = L.map('map').setView([28.61, 77.23], 5);
+let map = L.map('map').setView([20.5937, 78.9629], 5);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
 .addTo(map);
 
-// click map → auto fill
-map.on('click', function(e) {
-  document.getElementById("lat").value = e.latlng.lat;
-  document.getElementById("lng").value = e.latlng.lng;
-});
+let polyline;
 
 async function addOrder() {
   const location = document.getElementById("location").value;
@@ -28,9 +24,7 @@ async function getOrders() {
   const data = await res.json();
 
   data.forEach(o => {
-    L.marker([o.lat, o.lng])
-      .addTo(map)
-      .bindPopup(o.location);
+    L.marker([o.lat, o.lng]).addTo(map);
   });
 }
 
@@ -40,7 +34,9 @@ async function optimizeRoute() {
 
   let points = data.route.map(o => [o.lat, o.lng]);
 
-  L.polyline(points, { color: "red" }).addTo(map);
+  if (polyline) map.removeLayer(polyline);
 
-  alert("AI says:\n" + data.explanation);
+  polyline = L.polyline(points, { color: "red" }).addTo(map);
+
+  alert(data.explanation);
 }

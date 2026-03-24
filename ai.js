@@ -1,19 +1,15 @@
 function explainRoute(route) {
-  const locations = route.map(r => r.location);
+  let text = "🚀 Optimized Route:\n\n";
 
-  let explanation = "Optimized delivery route selected:\n\n";
-
-  locations.forEach((loc, i) => {
-    explanation += `${i + 1}. ${loc}\n`;
+  route.forEach((r, i) => {
+    text += `${i + 1}. ${r.location}\n`;
   });
 
-  explanation += "\nReason:\n";
+  text += "\n📊 Analysis:\n";
+  text += "• Distance minimized\n";
+  text += "• Efficient path selected\n";
 
-  explanation += "• Nearest neighbor algorithm used\n";
-  explanation += "• Total travel distance minimized\n";
-  explanation += "• Efficient path for faster delivery\n";
-
-  return explanation;
+  return text;
 }
 
 module.exports = explainRoute;
