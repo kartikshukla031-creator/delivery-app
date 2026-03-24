@@ -9,23 +9,23 @@
 
 <body>
 
-<h1>🚀 AI Delivery Optimizer</h1>
-
 <div class="container">
+  <h1>🚀 AI Delivery Optimizer</h1>
 
-  <input id="location" placeholder="Location">
-  <input id="lat" placeholder="Latitude">
-  <input id="lng" placeholder="Longitude">
+  <div class="form">
+    <input id="location" placeholder="Location">
+    <input id="lat" placeholder="Latitude">
+    <input id="lng" placeholder="Longitude">
 
-  <button onclick="addOrder()">Add Order</button>
-  <button onclick="getOrders()">Show Orders</button>
-  <button onclick="optimizeRoute()">AI Optimize</button>
+    <button onclick="addOrder()">Add Order</button>
+    <button onclick="getOrders()">Show Orders</button>
+    <button onclick="optimizeRoute()">AI Optimize</button>
+  </div>
 
+  <div id="map"></div>
+
+  <ul id="list"></ul>
 </div>
-
-<div id="map"></div>
-
-<ul id="list"></ul>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="app.js"></script>
