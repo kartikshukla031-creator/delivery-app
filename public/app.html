@@ -1,10 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dashboard</title>
+  <title>AI Delivery Dashboard</title>
 
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <style>
+    body {
+      background: linear-gradient(135deg,#0f172a,#1e293b);
+      color: white;
+      font-family: "Segoe UI";
+      margin: 0;
+      padding: 0;
+    }
+
+    h2 {
+      text-align: center;
+      padding: 15px;
+    }
+
+    .card {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 10px;
+      background: #22c55e;
+      color: white;
+      cursor: pointer;
+    }
+
+    #map {
+      height: 400px;
+      margin: 20px;
+      border-radius: 15px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      text-align: center;
+    }
+
+    li {
+      margin: 5px 0;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -12,13 +72,15 @@
 <h2>📦 Delivery Dashboard</h2>
 
 <div class="card">
-  <input id="location" placeholder="Location">
-  <input id="lat" placeholder="Latitude">
-  <input id="lng" placeholder="Longitude">
 
-  <button onclick="addOrder()">Add</button>
-  <button onclick="getOrders()">Show</button>
-  <button onclick="optimizeRoute()">Optimize</button>
+  <input id="locationInput" placeholder="Enter location (Indore, Delhi...)" />
+
+  <button onclick="getCurrentLocation()">📍 Use My Location</button>
+
+  <button onclick="addOrder()">Add Order</button>
+  <button onclick="getOrders()">Show Orders</button>
+  <button onclick="optimizeRoute()">Optimize Route</button>
+
 </div>
 
 <div id="map"></div>
