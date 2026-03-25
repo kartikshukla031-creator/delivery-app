@@ -8,19 +8,16 @@
 <body class="login-body">
 
 <div class="login-container">
-
   <h1>🚀 AI Delivery Optimizer</h1>
 
   <p class="desc">
-    Optimize delivery routes using smart algorithms and visualize them
-    on an interactive map. Built with full-stack architecture.
+    Smart delivery route optimization with real-time map tracking.
   </p>
 
   <input id="email" placeholder="Email">
   <input id="password" type="password" placeholder="Password">
 
   <button onclick="login()">Login</button>
-
 </div>
 
 <script>
@@ -28,18 +25,22 @@ async function login() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  const res = await fetch("/auth/login", {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({ email, password })
-  });
+  try {
+    const res = await fetch("/auth/login", {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({ email, password })
+    });
 
-  const data = await res.json();
+    const data = await res.json();
 
-  if (data.success) {
-    window.location.href = "/app";
-  } else {
-    alert("Invalid login ❌");
+    if (data.success) {
+      window.location.href = "/app.html"; // ✅ correct
+    } else {
+      alert("Invalid login ❌");
+    }
+  } catch (err) {
+    alert("Server error ❌");
   }
 }
 </script>

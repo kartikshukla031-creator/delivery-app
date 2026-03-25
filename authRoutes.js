@@ -1,21 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-const User = require("./User");
+// 🔥 simple demo login (DB wali complexity hata di for now)
+router.post("/login", (req, res) => {
+  const { email, password } = req.body;
 
-router.post("/register", async (req, res) => {
-  const user = new User(req.body);
-  await user.save();
-  res.send("success");
-});
-
-router.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-
-  const user = await User.findOne({ username, password });
-
-  if (user) res.send("success");
-  else res.send("fail");
+  // test credentials
+  if (email === "admin" && password === "123") {
+    return res.json({ success: true });
+  } else {
+    return res.json({ success: false });
+  }
 });
 
 module.exports = router;
