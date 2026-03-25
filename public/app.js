@@ -23,7 +23,6 @@ async function getCoordinates(address) {
   };
 }
 
-// 📍 Use My Location
 function getCurrentLocation() {
   navigator.geolocation.getCurrentPosition((position) => {
 
@@ -41,7 +40,6 @@ function getCurrentLocation() {
   });
 }
 
-// ➕ Add Order
 async function addOrder() {
 
   let location = document.getElementById("locationInput").value;
@@ -55,14 +53,12 @@ async function addOrder() {
 
   if (!coords) return;
 
-  // marker
   const marker = L.marker([coords.lat, coords.lng])
     .addTo(map)
     .bindPopup(location);
 
   markers.push(marker);
 
-  // backend save
   await fetch("/orders/add", {
     method: "POST",
     headers: {"Content-Type":"application/json"},
@@ -76,7 +72,6 @@ async function addOrder() {
   alert("Order Added ✅");
 }
 
-// 📦 Get Orders
 async function getOrders() {
   const res = await fetch("/orders");
   const data = await res.json();
@@ -93,7 +88,6 @@ async function getOrders() {
   });
 }
 
-// 🤖 Optimize Route
 async function optimizeRoute() {
   const res = await fetch("/orders/optimize");
   const data = await res.json();

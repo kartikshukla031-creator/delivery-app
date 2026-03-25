@@ -4,7 +4,6 @@ const router = express.Router();
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
-  // demo login (always works for demo)
   if (email === "admin" && password === "123") {
     return res.json({ success: true });
   }
