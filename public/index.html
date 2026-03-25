@@ -2,33 +2,47 @@
 <html>
 <head>
   <title>AI Delivery Optimizer</title>
-
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="login-body">
 
-<div class="container">
+<div class="login-container">
+
   <h1>🚀 AI Delivery Optimizer</h1>
 
-  <div class="form">
-    <input id="location" placeholder="Location">
-    <input id="lat" placeholder="Latitude">
-    <input id="lng" placeholder="Longitude">
+  <p class="desc">
+    Optimize delivery routes using smart algorithms and visualize them
+    on an interactive map. Built with full-stack architecture.
+  </p>
 
-    <button onclick="addOrder()">Add Order</button>
-    <button onclick="getOrders()">Show Orders</button>
-    <button onclick="optimizeRoute()">AI Optimize</button>
-  </div>
+  <input id="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Password">
 
-  <div id="map"></div>
+  <button onclick="login()">Login</button>
 
-  <ul id="list"></ul>
 </div>
 
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="app.js"></script>
+<script>
+async function login() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const res = await fetch("/auth/login", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({ email, password })
+  });
+
+  const data = await res.json();
+
+  if (data.success) {
+    window.location.href = "/app";
+  } else {
+    alert("Invalid login ❌");
+  }
+}
+</script>
 
 </body>
 </html>

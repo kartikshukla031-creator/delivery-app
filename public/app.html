@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+
+<body>
+
+<h2>📦 Delivery Dashboard</h2>
+
+<div class="card">
+  <input id="location" placeholder="Location">
+  <input id="lat" placeholder="Latitude">
+  <input id="lng" placeholder="Longitude">
+
+  <button onclick="addOrder()">Add</button>
+  <button onclick="getOrders()">Show</button>
+  <button onclick="optimizeRoute()">Optimize</button>
+</div>
+
+<div id="map"></div>
+
+<ul id="list"></ul>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>

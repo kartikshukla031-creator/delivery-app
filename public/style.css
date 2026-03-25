@@ -1,57 +1,65 @@
 body {
   margin: 0;
-  font-family: Arial;
-  background: linear-gradient(135deg, #1e1e2f, #2c2c54);
+  font-family: "Segoe UI";
+  background: linear-gradient(135deg,#0f172a,#1e293b);
   color: white;
 }
 
-.container {
-  text-align: center;
-  padding: 20px;
+/* LOGIN */
+.login-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-h1 {
+.login-container {
+  background: rgba(255,255,255,0.05);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.desc {
+  font-size: 14px;
+  opacity: 0.8;
   margin-bottom: 20px;
 }
 
-.form input {
-  padding: 10px;
-  margin: 5px;
+input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
   border-radius: 10px;
   border: none;
 }
 
 button {
-  padding: 10px 15px;
-  margin: 5px;
-  border: none;
+  padding: 12px;
+  width: 100%;
   border-radius: 10px;
-  background: #ff4757;
+  border: none;
+  background: #22c55e;
   color: white;
   cursor: pointer;
 }
 
-button:hover {
-  background: #ff6b81;
-}
-
+/* APP */
 #map {
   height: 400px;
-  margin-top: 20px;
+  margin: 20px;
   border-radius: 20px;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
+.card {
+  padding: 20px;
 }
+
+/* MOBILE */
 @media (max-width: 768px) {
   input, button {
     width: 100%;
-    margin-bottom: 10px;
-  }
-
-  #map {
-    height: 300px;
   }
 }
